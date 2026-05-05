@@ -1,0 +1,16 @@
+[package]
+name = "moling"
+version = "1.0.0"
+description = "AI小说创作助手"
+authors = ["Moling Team"]
+license = "MIT"
+edition = "2021"
+
+[[bin]]
+name = "moling"
+path = "src/main.rs"
+
+[dependencies]
+tauri = { version = "1.5", features = ["api-all"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
