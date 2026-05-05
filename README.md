@@ -143,6 +143,37 @@ pnpm run tauri build
 - AI生成内容版权归属用户
 - Skill-DNA定期快照存档，支持随时回滚到任意历史版本
 
+## 📥 下载安装
+
+项目使用GitHub Actions自动构建，每次推送到main分支都会自动构建各平台安装包。
+
+### 下载地址
+
+访问 [GitHub Releases](https://github.com/Qiu-Shiyi/Moling-Novel-writer/releases) 页面下载最新版本：
+
+- **Windows**: `.exe` 安装程序
+- **macOS**: `.dmg` 磁盘镜像
+- **Linux**: `.deb` 安装包
+
+### 手动构建
+
+如果你想自己构建：
+
+```bash
+# 克隆仓库
+git clone https://github.com/Qiu-Shiyi/Moling-Novel-writer.git
+cd Moling-Novel-writer
+
+# 安装依赖
+pnpm install
+
+# 构建生产版本
+pnpm run build
+
+# 构建桌面应用（需要安装Tauri依赖）
+pnpm tauri build
+```
+
 ## 📄 许可证
 
 MIT License
