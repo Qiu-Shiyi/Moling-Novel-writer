@@ -61,18 +61,18 @@ export function Dashboard() {
     <Layout title="书架" subtitle="你的小说创作空间" showActions={false}>
       {loading ? (
         <div className="flex items-center justify-center h-64">
-          <div className="w-8 h-8 border-4 border-[cinnabar] border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-4 border-cinnabar border-t-transparent rounded-full animate-spin" />
         </div>
       ) : (
         <>
           {novels.length === 0 ? (
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[cinnabar] to-[cinnabar-light] flex items-center justify-center">
-                  <BookOpen size={32} className="text-[paper]" />
+                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-cinnabar to-cinnabar-light flex items-center justify-center">
+                  <BookOpen size={32} className="text-paper" />
                 </div>
-                <h2 className="font-serif text-2xl text-[paper] mb-2">开始你的创作之旅</h2>
-                <p className="text-[paper-dim]">选择一种模式开始写作，或从灵感孵化室获取创意</p>
+                <h2 className="font-serif text-2xl text-paper mb-2">开始你的创作之旅</h2>
+                <p className="text-paper-dim">选择一种模式开始写作，或从灵感孵化室获取创意</p>
               </div>
 
               <div className="grid grid-cols-3 gap-4 mb-8">
@@ -80,13 +80,13 @@ export function Dashboard() {
                   <button
                     key={btn.id}
                     onClick={btn.onClick}
-                    className="p-6 bg-[ink-800] border border-[ink-600] rounded-xl hover:border-[cinnabar]/50 hover:bg-[ink-700]/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group"
+                    className="p-6 bg-ink-800 border border-ink-600 rounded-xl hover:border-cinnabar/50 hover:bg-ink-700/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group"
                   >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[cinnabar]/20 to-[cinnabar-light]/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                      <btn.icon size={24} className="text-[cinnabar]" />
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cinnabar/20 to-cinnabar-light/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <btn.icon size={24} className="text-cinnabar" />
                     </div>
-                    <h3 className="font-semibold text-[paper] mb-1">{btn.label}</h3>
-                    <p className="text-sm text-[paper-dim]">{btn.description}</p>
+                    <h3 className="font-semibold text-paper mb-1">{btn.label}</h3>
+                    <p className="text-sm text-paper-dim">{btn.description}</p>
                   </button>
                 ))}
               </div>
@@ -94,7 +94,7 @@ export function Dashboard() {
               <div className="text-center">
                 <button
                   onClick={() => navigate('/idea-lab')}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[cinnabar] to-[cinnabar-light] hover:shadow-lg hover:shadow-[cinnabar]/20 text-white font-medium rounded-lg transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cinnabar to-cinnabar-light hover:shadow-lg hover:shadow-[cinnabar]/20 text-white font-medium rounded-lg transition-all"
                 >
                   <Sparkles size={20} />
                   进入灵感孵化室
@@ -105,12 +105,12 @@ export function Dashboard() {
             <>
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="font-serif text-lg text-[paper]">我的小说</h2>
-                  <p className="text-sm text-[paper-dim]">{novels.length} 部作品</p>
+                  <h2 className="font-serif text-lg text-paper">我的小说</h2>
+                  <p className="text-sm text-paper-dim">{novels.length} 部作品</p>
                 </div>
                 <button
                   onClick={() => setShowCreateModal(true)}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-[cinnabar] hover:bg-[cinnabar-light] text-white font-medium rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-cinnabar hover:bg-cinnabar-light text-white font-medium rounded-lg transition-colors"
                 >
                   <Plus size={20} />
                   创建新小说

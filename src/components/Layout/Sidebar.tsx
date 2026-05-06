@@ -45,22 +45,22 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
 
   return (
     <aside
-      className={`fixed left-0 top-0 h-screen bg-[ink-800] border-r border-[ink-600] transition-all duration-300 z-40 flex flex-col ${
+      className={`fixed left-0 top-0 h-screen bg-ink-800 border-r border-ink-600 transition-all duration-300 z-40 flex flex-col ${
         collapsed ? 'w-16' : 'w-64'
       }`}
     >
-      <div className="flex items-center justify-between h-16 px-4 border-b border-[ink-600]">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-ink-600">
         {!collapsed && (
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[cinnabar] to-[cinnabar-light] flex items-center justify-center">
-              <span className="text-[paper] font-bold text-sm">墨</span>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cinnabar to-cinnabar-light flex items-center justify-center">
+              <span className="text-paper font-bold text-sm">墨</span>
             </div>
-            <span className="text-[paper] font-serif text-lg">墨灵</span>
+            <span className="text-paper font-serif text-lg">墨灵</span>
           </div>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-2 rounded-lg hover:bg-[ink-700] text-[paper-dim] hover:text-[paper] transition-colors duration-300"
+          className="p-2 rounded-lg hover:bg-ink-700 text-paper-dim hover:text-paper transition-colors duration-300"
         >
           {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
@@ -74,8 +74,8 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
                 onClick={() => navigate(item.path)}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 ${
                   isActive(item.path)
-                    ? 'border-l-2 border-[cinnabar] bg-[cinnabar]/10 text-[cinnabar]'
-                    : 'text-[paper-dim] hover:bg-[ink-700] hover:text-[paper]'
+                    ? 'border-l-2 border-cinnabar bg-cinnabar/10 text-cinnabar'
+                    : 'text-paper-dim hover:bg-ink-700 hover:text-paper'
                 }`}
               >
                 <item.icon size={20} />
@@ -89,12 +89,12 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
           <>
             {!collapsed && (
               <div className="px-4 py-3">
-                <span className="text-xs text-[paper-dim] uppercase tracking-wider">当前项目</span>
+                <span className="text-xs text-paper-dim uppercase tracking-wider">当前项目</span>
               </div>
             )}
             <ul className="relative space-y-1 px-2">
               {!collapsed && (
-                <div className="absolute left-5 top-0 bottom-0 w-px bg-[ink-600]" />
+                <div className="absolute left-5 top-0 bottom-0 w-px bg-ink-600" />
               )}
               {novelNavItems.map((item) => (
                 <li key={item.id}>
@@ -102,8 +102,8 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
                     onClick={() => navigate(getPath(item.path))}
                     className={`w-full flex items-center gap-3 pl-6 pr-3 py-2.5 rounded-lg transition-all duration-300 ${
                       isActive(item.path)
-                        ? 'border-l-2 border-[cinnabar] bg-[cinnabar]/10 text-[cinnabar]'
-                        : 'text-[paper-dim] hover:bg-[ink-700] hover:text-[paper]'
+                        ? 'border-l-2 border-cinnabar bg-cinnabar/10 text-cinnabar'
+                        : 'text-paper-dim hover:bg-ink-700 hover:text-paper'
                     }`}
                   >
                     <item.icon size={20} />
@@ -116,13 +116,13 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
         )}
       </nav>
 
-      <div className="border-t border-[ink-600] p-2">
+      <div className="border-t border-ink-600 p-2">
         <button
           onClick={() => navigate('/settings')}
           className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 ${
             location.pathname === '/settings'
-              ? 'border-l-2 border-[cinnabar] bg-[cinnabar]/10 text-[cinnabar]'
-              : 'text-[paper-dim] hover:bg-[ink-700] hover:text-[paper]'
+              ? 'border-l-2 border-cinnabar bg-cinnabar/10 text-cinnabar'
+              : 'text-paper-dim hover:bg-ink-700 hover:text-paper'
           }`}
         >
           <Settings size={20} />

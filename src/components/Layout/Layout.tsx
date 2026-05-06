@@ -24,7 +24,7 @@ export function Layout({
   showActions = true 
 }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-[ink-900] text-[paper]">
+    <div className="min-h-screen bg-ink-900 text-paper">
       <Sidebar currentNovelId={currentNovelId} />
       <div className="ml-64">
         <Header
