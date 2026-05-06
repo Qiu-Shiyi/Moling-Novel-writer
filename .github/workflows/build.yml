@@ -37,6 +37,12 @@ jobs:
       - name: Build Tauri app
         run: pnpm tauri build
       
+      - name: List build output
+        shell: pwsh
+        run: |
+          Get-ChildItem -Path src-tauri/target/release/bundle -Recurse
+          dir src-tauri/target/release/bundle
+      
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
