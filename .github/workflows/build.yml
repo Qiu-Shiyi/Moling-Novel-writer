@@ -36,7 +36,7 @@ jobs:
           targets: x86_64-pc-windows-msvc
       
       - name: Install Tauri CLI
-        run: cargo install tauri-cli --version "2" --locked
+        run: cargo install tauri-cli --version "^2" --locked
       
       - name: Build Tauri app
         run: cargo tauri build
