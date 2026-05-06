@@ -36,51 +36,11 @@ jobs:
         with:
           targets: x86_64-pc-windows-msvc
       
-      - name: Build Tauri app (verbose)
-        shell: pwsh
-        run: pnpm tauri build --verbose
-        continue-on-error: true
+      - name: Build Tauri app
+        run: pnpm tauri build
       
-      - name: Debug build output
-        shell: pwsh
-        run: |
-          Write-Host "=== Working directory ==="
-          Get-Location
-          
-          Write-Host "=== Check for target directories ==="
-          if (Test-Path "target") { 
-            Write-Host "target exists"
-            Get-ChildItem -Path target -Recurse -Directory -ErrorAction SilentlyContinue | Select-Object -First 20 FullName
-          }
-          if (Test-Path "src-tauri/target") { 
-            Write-Host "src-tauri/target exists"
-            Get-ChildItem -Path src-tauri/target -Recurse -Directory -ErrorAction SilentlyContinue | Select-Object -First 20 FullName
-          }
-          
-          Write-Host "=== Search for any .exe files ==="
-          $exes = Get-ChildItem -Path . -Filter "*.exe" -Recurse -ErrorAction SilentlyContinue
-          if ($exes) {
-            $exes | Select-Object FullName, Length
-          } else {
-            Write-Host "No .exe files found"
-          }
-          
-          Write-Host "=== Search for bundle directories ==="
-          $bundles = Get-ChildItem -Path . -Filter "bundle" -Recurse -Directory -ErrorAction SilentlyContinue
-          if ($bundles) {
-            $bundles | Select-Object FullName
-          } else {
-            Write-Host "No bundle directories found"
-          }
-          
-          Write-Host "=== Check Cargo.toml structure ==="
-          Get-ChildItem -Filter "Cargo.toml" -Recurse | Select-Object FullName
-      
-      - name: Upload artifact (if any files exist)
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: |
-            target/release/bundle/**/*
-            src-tauri/target/release/bundle/**/*
-          if-no-files-found: warn
+          path: src-tauri/target/release/bundle/nsis/*.exe

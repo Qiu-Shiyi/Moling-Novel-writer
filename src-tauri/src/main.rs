@@ -4,7 +4,7 @@
 )]
 
 fn main() {
-    tauri::Builder::default()
+    tauri::Builder::new()
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
