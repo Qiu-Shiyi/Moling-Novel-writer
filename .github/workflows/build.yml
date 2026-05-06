@@ -27,17 +27,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       
-      - name: Debug - Check Cargo.toml
-        shell: pwsh
-        run: |
-          Write-Host "=== Cargo.toml content ==="
-          Get-Content "src-tauri/Cargo.toml"
-          
-          Write-Host "=== Test cargo check ==="
-          cd src-tauri
-          cargo check --quiet
-          cd ..
-      
       - name: Build frontend
         run: pnpm run build
       
