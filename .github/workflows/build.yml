@@ -27,19 +27,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       
-      - name: Debug - Check Tauri CLI version and config
+      - name: Debug - Check Cargo.toml
         shell: pwsh
         run: |
-          Write-Host "=== Tauri CLI Version ==="
-          pnpm tauri --version
+          Write-Host "=== Cargo.toml content ==="
+          Get-Content "src-tauri/Cargo.toml"
           
-          Write-Host "=== Tauri Info ==="
-          pnpm tauri info
-          
-          Write-Host "=== Check file encoding ==="
-          $content = Get-Content "tauri.conf.json" -Raw
-          Write-Host "File length: $($content.Length)"
-          Write-Host "First 100 chars: $($content.Substring(0, [Math]::Min(100, $content.Length)))"
+          Write-Host "=== Test cargo check ==="
+          cd src-tauri
+          cargo check --quiet
+          cd ..
       
       - name: Build frontend
         run: pnpm run build
@@ -50,10 +47,7 @@ jobs:
           targets: x86_64-pc-windows-msvc
       
       - name: Build Tauri app
-        shell: pwsh
-        run: |
-          Write-Host "=== Running tauri build from: $(Get-Location)"
-          pnpm tauri build
+        run: pnpm tauri build
       
       - name: Upload artifact
         uses: actions/upload-artifact@v4
