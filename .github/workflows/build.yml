@@ -27,28 +27,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       
-      - name: Verify Tauri CLI version
-        run: pnpm tauri --version
-      
-      - name: Debug - Check directory structure
+      - name: Debug - Check Tauri CLI version and config
         shell: pwsh
         run: |
-          Write-Host "=== Current directory ==="
-          Get-Location
+          Write-Host "=== Tauri CLI Version ==="
+          pnpm tauri --version
           
-          Write-Host "=== Check tauri.conf.json files ==="
-          if (Test-Path "tauri.conf.json") { 
-            Write-Host "Root tauri.conf.json exists"
-            Get-Content "tauri.conf.json"
-          } else {
-            Write-Host "Root tauri.conf.json NOT FOUND"
-          }
+          Write-Host "=== Tauri Info ==="
+          pnpm tauri info
           
-          if (Test-Path "src-tauri/tauri.conf.json") { 
-            Write-Host "src-tauri/tauri.conf.json exists"
-          } else {
-            Write-Host "src-tauri/tauri.conf.json NOT FOUND"
-          }
+          Write-Host "=== Check file encoding ==="
+          $content = Get-Content "tauri.conf.json" -Raw
+          Write-Host "File length: $($content.Length)"
+          Write-Host "First 100 chars: $($content.Substring(0, [Math]::Min(100, $content.Length)))"
       
       - name: Build frontend
         run: pnpm run build
@@ -59,7 +50,10 @@ jobs:
           targets: x86_64-pc-windows-msvc
       
       - name: Build Tauri app
-        run: pnpm tauri build
+        shell: pwsh
+        run: |
+          Write-Host "=== Running tauri build from: $(Get-Location)"
+          pnpm tauri build
       
       - name: Upload artifact
         uses: actions/upload-artifact@v4
