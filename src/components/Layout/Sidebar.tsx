@@ -44,23 +44,23 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
   };
 
   return (
-    <aside 
-      className={`fixed left-0 top-0 h-screen bg-slate-900 border-r border-slate-700 transition-all duration-300 z-40 flex flex-col ${
+    <aside
+      className={`fixed left-0 top-0 h-screen bg-[var(--ink-800)] border-r border-[var(--ink-600)] transition-all duration-300 z-40 flex flex-col ${
         collapsed ? 'w-16' : 'w-64'
       }`}
     >
-      <div className="flex items-center justify-between h-16 px-4 border-b border-slate-700">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-[var(--ink-600)]">
         {!collapsed && (
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center">
-              <span className="text-slate-900 font-bold text-sm">墨</span>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--cinnabar)] to-[var(--cinnabar-light)] flex items-center justify-center">
+              <span className="text-[var(--paper)] font-bold text-sm">墨</span>
             </div>
-            <span className="text-amber-400 font-semibold text-lg">墨灵</span>
+            <span className="text-[var(--paper)] font-serif text-lg">墨灵</span>
           </div>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-2 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="p-2 rounded-lg hover:bg-[var(--ink-700)] text-[var(--paper-dim)] hover:text-[var(--paper)] transition-colors duration-300"
         >
           {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
@@ -72,10 +72,10 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
             <li key={item.id}>
               <button
                 onClick={() => navigate(item.path)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 ${
                   isActive(item.path)
-                    ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                    ? 'border-l-2 border-[var(--cinnabar)] bg-[var(--cinnabar)]/10 text-[var(--cinnabar)]'
+                    : 'text-[var(--paper-dim)] hover:bg-[var(--ink-700)] hover:text-[var(--paper)]'
                 }`}
               >
                 <item.icon size={20} />
@@ -89,18 +89,21 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
           <>
             {!collapsed && (
               <div className="px-4 py-3">
-                <span className="text-xs text-slate-500 uppercase tracking-wider">当前项目</span>
+                <span className="text-xs text-[var(--paper-dim)] uppercase tracking-wider">当前项目</span>
               </div>
             )}
-            <ul className="space-y-1 px-2">
+            <ul className="relative space-y-1 px-2">
+              {!collapsed && (
+                <div className="absolute left-5 top-0 bottom-0 w-px bg-[var(--ink-600)]" />
+              )}
               {novelNavItems.map((item) => (
                 <li key={item.id}>
                   <button
                     onClick={() => navigate(getPath(item.path))}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                    className={`w-full flex items-center gap-3 pl-6 pr-3 py-2.5 rounded-lg transition-all duration-300 ${
                       isActive(item.path)
-                        ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                        ? 'border-l-2 border-[var(--cinnabar)] bg-[var(--cinnabar)]/10 text-[var(--cinnabar)]'
+                        : 'text-[var(--paper-dim)] hover:bg-[var(--ink-700)] hover:text-[var(--paper)]'
                     }`}
                   >
                     <item.icon size={20} />
@@ -113,13 +116,13 @@ export function Sidebar({ currentNovelId }: SidebarProps) {
         )}
       </nav>
 
-      <div className="border-t border-slate-700 p-2">
+      <div className="border-t border-[var(--ink-600)] p-2">
         <button
           onClick={() => navigate('/settings')}
-          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 ${
             location.pathname === '/settings'
-              ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-              : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+              ? 'border-l-2 border-[var(--cinnabar)] bg-[var(--cinnabar)]/10 text-[var(--cinnabar)]'
+              : 'text-[var(--paper-dim)] hover:bg-[var(--ink-700)] hover:text-[var(--paper)]'
           }`}
         >
           <Settings size={20} />

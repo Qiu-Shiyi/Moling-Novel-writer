@@ -78,7 +78,7 @@ export function Editor() {
     return (
       <Layout title="加载中..." showActions={false}>
         <div className="flex items-center justify-center h-64">
-          <div className="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-4 border-[var(--cinnabar)] border-t-transparent rounded-full animate-spin" />
         </div>
       </Layout>
     );
@@ -91,13 +91,13 @@ export function Editor() {
       currentNovelId={novelId || undefined}
     >
       <div className="grid grid-cols-12 gap-6 h-[calc(100vh-8rem)]">
-        <div className="col-span-3 bg-slate-800 rounded-xl border border-slate-700 flex flex-col overflow-hidden">
-          <div className="p-4 border-b border-slate-700">
+        <div className="col-span-3 bg-[var(--ink-800)] rounded-xl border border-[var(--ink-600)] flex flex-col overflow-hidden">
+          <div className="p-4 border-b border-[var(--ink-600)]">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-white">章节列表</h3>
+              <h3 className="font-serif text-[var(--paper)]">章节列表</h3>
               <button
                 onClick={handleCreateChapter}
-                className="p-2 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors"
+                className="p-2 hover:bg-[var(--ink-700)] rounded-lg text-[var(--paper-dim)] hover:text-[var(--paper)] transition-colors"
               >
                 <Plus size={18} />
               </button>
@@ -110,8 +110,8 @@ export function Editor() {
                 key={chapter.id}
                 className={`group flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer transition-all ${
                   selectedChapterId === chapter.id
-                    ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-                    : 'text-slate-400 hover:bg-slate-700 hover:text-white'
+                    ? 'border-l-2 border-[var(--cinnabar)] bg-[var(--cinnabar)]/10 text-[var(--cinnabar)]'
+                    : 'text-[var(--paper-dim)] hover:bg-[var(--ink-700)]'
                 }`}
                 onClick={() => setSelectedChapterId(chapter.id)}
               >
@@ -120,20 +120,20 @@ export function Editor() {
                   <div className="flex items-center gap-2">
                     <span className="truncate text-sm">{chapter.title}</span>
                     {chapter.content.length > 0 && (
-                      <span className="text-xs text-slate-500">{chapter.wordCount}字</span>
+                      <span className="text-xs text-[var(--paper-dim)]">{chapter.wordCount}字</span>
                     )}
                   </div>
                 </div>
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={(e) => { e.stopPropagation(); }}
-                    className="p-1.5 hover:bg-slate-600 rounded text-slate-400 hover:text-white"
+                    className="p-1.5 hover:bg-[var(--ink-600)] rounded text-[var(--paper-dim)] hover:text-[var(--paper)]"
                   >
                     <Edit3 size={12} />
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); handleDeleteChapter(chapter.id); }}
-                    className="p-1.5 hover:bg-red-500/20 rounded text-slate-400 hover:text-red-400"
+                    className="p-1.5 hover:bg-[var(--cinnabar)]/20 rounded text-[var(--paper-dim)] hover:text-[var(--cinnabar)]"
                   >
                     <Trash2 size={12} />
                   </button>
@@ -144,15 +144,15 @@ export function Editor() {
         </div>
 
         <div className="col-span-9 flex flex-col">
-          <div className="bg-slate-800 rounded-xl border border-slate-700 flex flex-col overflow-hidden flex-1">
+          <div className="bg-[var(--ink-800)] rounded-xl border border-[var(--ink-600)] flex flex-col overflow-hidden flex-1">
             {selectedChapter && (
               <>
-                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700">
+                <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--ink-600)]">
                   <input
                     type="text"
                     value={selectedChapter.title}
                     onChange={(e) => updateChapter(selectedChapter.id, { title: e.target.value })}
-                    className="bg-transparent text-lg font-semibold text-white border-none outline-none"
+                    className="bg-transparent text-lg font-serif text-[var(--paper)] border-none outline-none"
                     placeholder="章节标题..."
                   />
                   <div className="flex items-center gap-2">
@@ -160,8 +160,8 @@ export function Editor() {
                       onClick={() => setShowAIPanel(!showAIPanel)}
                       className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
                         showAIPanel 
-                          ? 'bg-amber-500 text-slate-900' 
-                          : 'bg-slate-700 text-white hover:bg-slate-600'
+                          ? 'bg-[var(--cinnabar)] text-white' 
+                          : 'bg-[var(--ink-700)] text-[var(--paper)] hover:bg-[var(--ink-600)]'
                       }`}
                     >
                       <Sparkles size={16} />
@@ -170,36 +170,36 @@ export function Editor() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 px-6 py-2 border-b border-slate-700 bg-slate-800/50">
-                  <button className="p-2 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors">
+                <div className="flex items-center gap-1 px-6 py-2 border-b border-[var(--ink-600)] bg-[var(--ink-800)]/50 backdrop-blur-sm">
+                  <button className="p-2 hover:bg-[var(--ink-700)] rounded text-[var(--paper-dim)] hover:text-[var(--paper)] transition-colors">
                     <Bold size={16} />
                   </button>
-                  <button className="p-2 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors">
+                  <button className="p-2 hover:bg-[var(--ink-700)] rounded text-[var(--paper-dim)] hover:text-[var(--paper)] transition-colors">
                     <Italic size={16} />
                   </button>
-                  <div className="w-px h-6 bg-slate-600 mx-1" />
-                  <button className="p-2 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors">
+                  <div className="w-px h-6 bg-[var(--ink-600)] mx-1" />
+                  <button className="p-2 hover:bg-[var(--ink-700)] rounded text-[var(--paper-dim)] hover:text-[var(--paper)] transition-colors">
                     <List size={16} />
                   </button>
-                  <button className="p-2 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors">
+                  <button className="p-2 hover:bg-[var(--ink-700)] rounded text-[var(--paper-dim)] hover:text-[var(--paper)] transition-colors">
                     <ListOrdered size={16} />
                   </button>
-                  <div className="w-px h-6 bg-slate-600 mx-1" />
-                  <button className="p-2 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors">
+                  <div className="w-px h-6 bg-[var(--ink-600)] mx-1" />
+                  <button className="p-2 hover:bg-[var(--ink-700)] rounded text-[var(--paper-dim)] hover:text-[var(--paper)] transition-colors">
                     <Undo size={16} />
                   </button>
-                  <button className="p-2 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors">
+                  <button className="p-2 hover:bg-[var(--ink-700)] rounded text-[var(--paper-dim)] hover:text-[var(--paper)] transition-colors">
                     <Redo size={16} />
                   </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-6">
+                <div className="flex-1 overflow-y-auto p-6 bg-[#1c1c14]">
                   <textarea
                     ref={textareaRef}
                     value={selectedChapter.content}
                     onChange={(e) => handleTextChange(e.target.value)}
                     placeholder="开始写作..."
-                    className="w-full h-full bg-transparent text-white text-lg leading-relaxed resize-none outline-none placeholder-slate-500"
+                    className="w-full h-full bg-transparent text-[var(--paper)] text-lg leading-relaxed resize-none outline-none placeholder-[var(--paper-dim)]"
                     spellCheck={false}
                   />
                 </div>
@@ -209,8 +209,8 @@ export function Editor() {
             {!selectedChapter && chapters.length > 0 && (
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center">
-                  <Edit3 size={48} className="mx-auto text-slate-600 mb-4" />
-                  <p className="text-slate-400">选择一个章节开始编辑</p>
+                  <Edit3 size={48} className="mx-auto text-[var(--ink-600)] mb-4" />
+                  <p className="text-[var(--paper-dim)]">选择一个章节开始编辑</p>
                 </div>
               </div>
             )}
@@ -218,11 +218,11 @@ export function Editor() {
             {chapters.length === 0 && (
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center">
-                  <Edit3 size={48} className="mx-auto text-slate-600 mb-4" />
-                  <p className="text-slate-400 mb-4">还没有章节，点击左侧按钮创建</p>
+                  <Edit3 size={48} className="mx-auto text-[var(--ink-600)] mb-4" />
+                  <p className="text-[var(--paper-dim)] mb-4">还没有章节，点击左侧按钮创建</p>
                   <button
                     onClick={handleCreateChapter}
-                    className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-medium rounded-lg transition-colors"
+                    className="px-4 py-2 bg-[var(--cinnabar)] hover:bg-[var(--cinnabar-light)] text-white font-medium rounded-lg transition-colors"
                   >
                     创建第一章
                   </button>
@@ -232,12 +232,12 @@ export function Editor() {
           </div>
 
           {showAIPanel && selectedChapter && (
-            <div className="mt-4 bg-slate-800 rounded-xl border border-slate-700 p-4">
+            <div className="mt-4 bg-[var(--ink-800)] rounded-xl border-t-2 border-[var(--cinnabar)] p-4">
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-white">AI续写建议</h4>
+                <h4 className="font-serif text-[var(--paper)]">AI续写建议</h4>
                 <button
                   onClick={() => setShowAIPanel(false)}
-                  className="text-slate-400 hover:text-white"
+                  className="text-[var(--paper-dim)] hover:text-[var(--paper)]"
                 >
                   关闭
                 </button>
@@ -245,29 +245,29 @@ export function Editor() {
 
               {aiLoading ? (
                 <div className="flex items-center justify-center py-8">
-                  <Loader2 size={24} className="animate-spin text-amber-500" />
+                  <Loader2 size={24} className="animate-spin text-[var(--cinnabar)]" />
                 </div>
               ) : aiError ? (
-                <div className="p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400">
+                <div className="p-4 bg-[var(--cinnabar)]/20 border border-[var(--cinnabar)]/50 rounded-lg text-[var(--cinnabar)]">
                   {aiError}
                 </div>
               ) : aiResults.length > 0 ? (
                 <div className="space-y-4">
                   {aiResults.map((result, index) => (
-                    <div key={index} className="bg-slate-700/50 rounded-lg p-4">
+                    <div key={index} className="bg-[var(--ink-700)]/50 rounded-lg p-4">
                       <div className="flex items-center gap-2 mb-2">
                         <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                          index === 0 ? 'bg-blue-500/20 text-blue-400' :
-                          index === 1 ? 'bg-amber-500/20 text-amber-400' :
-                          'bg-purple-500/20 text-purple-400'
+                          index === 0 ? 'bg-[var(--ink-700)]/50 text-[var(--paper-dim)]' :
+                          index === 1 ? 'bg-[var(--cinnabar)]/20 text-[var(--cinnabar)]' :
+                          'bg-[var(--bamboo)]/20 text-[var(--bamboo)]'
                         }`}>
                           {index === 0 ? '保守' : index === 1 ? '适中' : '出人意料'}
                         </span>
                       </div>
-                      <p className="text-slate-300 text-sm mb-3">{result}</p>
+                      <p className="text-[var(--paper-dim)] text-sm mb-3">{result}</p>
                       <button
                         onClick={() => handleInsertAIResult(result)}
-                        className="px-3 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 text-sm rounded-lg transition-colors"
+                        className="px-3 py-1.5 bg-[var(--cinnabar)]/20 hover:bg-[var(--cinnabar)]/30 text-[var(--cinnabar)] text-sm rounded-lg transition-colors"
                       >
                         插入这段
                       </button>
@@ -279,12 +279,12 @@ export function Editor() {
                   <button
                     onClick={handleGenerateContinuation}
                     disabled={!selectedChapter.content.trim()}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 disabled:bg-slate-600 text-slate-900 font-medium rounded-lg transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--cinnabar)] hover:bg-[var(--cinnabar-light)] disabled:bg-[var(--ink-700)] text-white font-medium rounded-lg transition-colors"
                   >
                     <Sparkles size={20} />
                     生成续写建议
                   </button>
-                  <p className="text-sm text-slate-500 mt-2">基于当前内容生成3种不同风格的续写</p>
+                  <p className="text-sm text-[var(--paper-dim)] mt-2">基于当前内容生成3种不同风格的续写</p>
                 </div>
               )}
             </div>

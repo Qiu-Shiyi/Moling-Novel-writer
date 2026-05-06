@@ -15,23 +15,23 @@ export function Header({ title, subtitle, onSave, onPreview, onExport, showActio
   const [darkMode, setDarkMode] = useState(true);
 
   return (
-    <header className="h-16 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 flex items-center justify-between px-6">
+    <header className="h-16 bg-[var(--ink-800)]/80 backdrop-blur-md border-b border-[var(--ink-600)] flex items-center justify-between px-6">
       <div className="flex items-center gap-4">
         <div>
-          <h1 className="text-lg font-semibold text-white">{title}</h1>
-          {subtitle && <p className="text-sm text-slate-400">{subtitle}</p>}
+          <h1 className="font-serif text-xl font-semibold text-[var(--paper)]">{title}</h1>
+          {subtitle && <p className="text-sm text-[var(--paper-dim)]">{subtitle}</p>}
         </div>
       </div>
 
       <div className="flex items-center gap-4">
         <div className="relative">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--paper-dim)]" />
           <input
             type="text"
             placeholder="搜索..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-64 pl-9 pr-4 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-sm text-white placeholder-slate-400 focus:outline-none focus:border-amber-500/50 transition-colors"
+            className="w-64 pl-9 pr-4 py-2 bg-[var(--ink-700)]/50 border border-[var(--ink-600)] rounded-lg text-sm text-[var(--paper)] placeholder-[var(--paper-dim)] focus:outline-none focus:border-[var(--cinnabar)]/50 focus:shadow-[0_0_15px_rgba(196,92,72,0.2)] transition-colors"
           />
         </div>
 
@@ -39,21 +39,21 @@ export function Header({ title, subtitle, onSave, onPreview, onExport, showActio
           <div className="flex items-center gap-2">
             <button
               onClick={onSave}
-              className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-[var(--ink-700)] hover:bg-[var(--ink-600)] text-[var(--paper)] text-sm rounded-lg transition-all duration-200 hover:-translate-y-0.5"
             >
               <Save size={16} />
               <span>保存</span>
             </button>
             <button
               onClick={onPreview}
-              className="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-[var(--ink-700)] hover:bg-[var(--ink-600)] text-[var(--paper)] text-sm rounded-lg transition-all duration-200 hover:-translate-y-0.5"
             >
               <Eye size={16} />
               <span>预览</span>
             </button>
             <button
               onClick={onExport}
-              className="flex items-center gap-2 px-3 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 text-sm font-medium rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-[var(--cinnabar)] hover:bg-[var(--cinnabar-light)] text-white text-sm font-medium rounded-lg transition-all duration-200 hover:-translate-y-0.5"
             >
               <Download size={16} />
               <span>导出</span>
@@ -63,7 +63,7 @@ export function Header({ title, subtitle, onSave, onPreview, onExport, showActio
 
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className="p-2 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors"
+          className="p-2 rounded-lg text-[var(--paper-dim)] hover:text-[var(--paper)] hover:bg-[var(--ink-700)] transition-colors"
         >
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>

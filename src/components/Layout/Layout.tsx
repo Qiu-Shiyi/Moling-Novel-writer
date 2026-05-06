@@ -24,18 +24,18 @@ export function Layout({
   showActions = true 
 }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-[var(--ink-900)] text-[var(--paper)]">
       <Sidebar currentNovelId={currentNovelId} />
       <div className="ml-64">
-        <Header 
-          title={title} 
+        <Header
+          title={title}
           subtitle={subtitle}
           onSave={onSave}
           onPreview={onPreview}
           onExport={onExport}
           showActions={showActions}
         />
-        <main className="p-6">
+        <main className="p-6 animate-fade-in">
           {children}
         </main>
       </div>
