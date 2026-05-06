@@ -23,10 +23,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
       
       - name: Install dependencies
         run: pnpm install
+      
+      - name: Verify Tauri CLI version
+        run: pnpm tauri --version
       
       - name: Build frontend
         run: pnpm run build
