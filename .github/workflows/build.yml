@@ -10,30 +10,35 @@ on:
 jobs:
   build-windows:
     runs-on: windows-latest
+    
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      - name: Setup Node.js with corepack
         uses: actions/setup-node@v4
         with:
           node-version: '20'
       
-      - name: Install pnpm
+      - name: Enable corepack and install pnpm
         shell: pwsh
         run: |
-          npm install -g pnpm@9
+          corepack enable
+          corepack prepare pnpm@9.0.0 --activate
           pnpm --version
       
       - name: Install dependencies
+        shell: pwsh
         run: pnpm install
       
       - name: Build frontend
+        shell: pwsh
         run: pnpm run build
       
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
       
       - name: Build Tauri app
+        shell: pwsh
         run: pnpm tauri build
       
       - name: Upload artifact
