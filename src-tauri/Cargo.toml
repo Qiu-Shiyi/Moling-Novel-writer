@@ -6,6 +6,11 @@ authors = ["Moling Team"]
 license = "MIT"
 edition = "2021"
 
+[package.metadata]
+productName = "墨灵"
+version = "1.0.0"
+identifier = "com.moling.novel"
+
 [[bin]]
 name = "moling"
 path = "src/main.rs"
