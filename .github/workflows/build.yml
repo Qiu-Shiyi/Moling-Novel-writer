@@ -30,6 +30,26 @@ jobs:
       - name: Verify Tauri CLI version
         run: pnpm tauri --version
       
+      - name: Debug - Check directory structure
+        shell: pwsh
+        run: |
+          Write-Host "=== Current directory ==="
+          Get-Location
+          
+          Write-Host "=== Check tauri.conf.json files ==="
+          if (Test-Path "tauri.conf.json") { 
+            Write-Host "Root tauri.conf.json exists"
+            Get-Content "tauri.conf.json"
+          } else {
+            Write-Host "Root tauri.conf.json NOT FOUND"
+          }
+          
+          if (Test-Path "src-tauri/tauri.conf.json") { 
+            Write-Host "src-tauri/tauri.conf.json exists"
+          } else {
+            Write-Host "src-tauri/tauri.conf.json NOT FOUND"
+          }
+      
       - name: Build frontend
         run: pnpm run build
       
