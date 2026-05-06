@@ -41,8 +41,12 @@ jobs:
         with:
           workspaces: src-tauri -> target
       
+      - name: Install Tauri CLI
+        run: cargo install tauri-cli --version "^2" --locked
+      
       - name: Build Tauri app
-        run: pnpm tauri build
+        run: cargo tauri build
+        working-directory: src-tauri
       
       - name: Find build outputs
         shell: pwsh
