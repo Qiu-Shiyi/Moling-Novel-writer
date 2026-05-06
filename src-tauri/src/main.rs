@@ -4,7 +4,7 @@
 )]
 
 fn main() {
-    tauri::Builder::new()
+    tauri::Builder::<tauri::Wry>::new()
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
