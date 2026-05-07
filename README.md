@@ -101,6 +101,10 @@ pnpm run tauri dev
 pnpm run tauri build
 ```
 
+## 📜 项目协作规则
+⚠️ **重要规则**：所有代码变更必须在云端测试通过并经用户同意后，才能推送到 GitHub main 分支！
+完整规则请查看：[PROJECT_RULES.md](.trae/documents/PROJECT_RULES.md)
+
 ## 📝 配置说明
 
 ### AI配置
